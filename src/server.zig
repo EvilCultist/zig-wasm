@@ -2,6 +2,8 @@ const std = @import("std");
 const zap = @import("zap");
 
 fn on_request(r: zap.Request) void {
+    // zap.mimetypeRegister("wasm", "application/wasm");
+
     if (r.path) |the_path| {
         std.debug.print("requested: {s}\n", .{the_path});
         if (std.mem.eql(u8, the_path, "/source.js")) {
@@ -10,8 +12,11 @@ fn on_request(r: zap.Request) void {
         } else if (std.mem.eql(u8, the_path, "/index.html") or std.mem.eql(u8, the_path, "/")) {
             _ = (r.sendFile("web/index.html")) catch |err| std.debug.print("{any}", .{err});
             return;
+        } else if (std.mem.eql(u8, the_path, "/wasi-minimal-min.js")) {
+            _ = (r.sendFile("web/wasi-minimal-min.js")) catch |err| std.debug.print("{any}", .{err});
+            return;
         } else if (std.mem.eql(u8, the_path, "/checkerboard.wasm")) {
-            _ = (r.setContentType("application/wasm")) catch |err| std.debug.print("{any}", .{err});
+            // _ = (r.setContentType("application/wasm")) catch |err| std.debug.print("{any}", .{err});
             _ = (r.sendFile("zig-out/bin/checkerboard.wasm")) catch |err| std.debug.print("{any}", .{err});
             return;
         } else if (std.mem.eql(u8, the_path, "/favicon.ico")) {
@@ -39,8 +44,12 @@ pub fn main() !void {
 
     std.debug.print("Listening on 0.0.0.0:3000\n", .{});
 
+    zap.mimetypeRegister("wasm", "application/wasm");
+
     zap.start(.{
-        .threads = 2,
+        .threads = 4,
         .workers = 1, // 1 worker enables sharing state between threads
     });
+
+    // zap.mimetypeRegister(".wasm", "application/wasm");
 }
