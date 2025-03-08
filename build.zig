@@ -12,7 +12,7 @@ pub fn build(b: *std.Build) void {
 
     const target_wasm = b.resolveTargetQuery(.{
         .cpu_arch = .wasm32, //std.Target.Cpu.Arch
-        .os_tag = .wasi,
+        .os_tag = .freestanding,
     });
     // std.options.page_size_min = std.wasm.page_size;
 
