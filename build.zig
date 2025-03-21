@@ -18,6 +18,7 @@ pub fn build(b: *std.Build) void {
 
     const optimize = b.standardOptimizeOption(.{});
     // TODO create a new wasm optimize which is release small
+    const optimize_wasm = std.builtin.OptimizeMode.ReleaseSmall;
 
     // const lib_mod = b.createModule(.{
     //     .root_source_file = b.path("src/root.zig"),
@@ -48,7 +49,7 @@ pub fn build(b: *std.Build) void {
         // _ = b.createModule(.{
         .root_source_file = b.path("src/checks.zig"),
         .target = target_wasm,
-        .optimize = optimize,
+        .optimize = optimize_wasm,
     });
 
     // wasm_mod.addImport("zig_wasm_lib", lib_mod);
