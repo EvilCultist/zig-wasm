@@ -1,7 +1,7 @@
 var memory = new WebAssembly.Memory({
     // See build.zig for reasoning
     initial: 2 /* pages */,
-    maximum: 2 /* pages */,
+    maximum: 20 /* pages */,
 });
 
 var importObject = {
@@ -10,6 +10,11 @@ var importObject = {
         memory: memory,
     },
 };
+
+WebAssembly.instantiateStreaming(fetch("/root.wasm"), importObject).then((result) => {
+  const wasmMemoryArray = new Uint8Array(memory.buffer);
+  result.instance.exports.checkCall();
+}
 
 WebAssembly.instantiateStreaming(fetch("/checkerboard.wasm"), importObject).then((result) => {
     const wasmMemoryArray = new Uint8Array(memory.buffer);

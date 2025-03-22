@@ -2,7 +2,7 @@ const std = @import("std");
 
 extern fn consoleLog(arg: u32) void;
 
-const checkerboard_size: usize = 8;
+const checkerboard_size: usize = 4;
 
 // checkerboard_size * 2, where each pixel is 4 bytes (rgba)
 var checkerboard_buffer = std.mem.zeroes(
