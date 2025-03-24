@@ -1,14 +1,14 @@
 const std = @import("std");
 
 // extern fn consoleLog(arg: []const u8) void;
-extern fn consoleLog(arg: u32) void;
+extern fn consoleLog(arg: u8) void;
 
-pub export fn add(a: u32, b: u32) u32 {
+pub export fn add(a: u8, b: u8) u8 {
     // std.debug.print("{any}", .{a + b});
     return a + b;
 }
 
-pub export fn add2(a: u32, b: u32) u32 {
+pub export fn add2(a: u8, b: u8) u8 {
     // std.debug.print("{any}", .{a + b});
     return a + b;
 }

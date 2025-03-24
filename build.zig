@@ -7,6 +7,9 @@ const std_options: std.Options = .{
     // .page_size_min = "wrong type entirely",
 };
 
+// References used when making this:
+// https://github.com/SimonLSchlee/zig15game/blob/5d0a33d753528df890f0ab5dd56cd04ff6d0e1c2/build.zig#L77
+
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const target_wasm = b.resolveTargetQuery(.{
