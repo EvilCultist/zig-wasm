@@ -19,6 +19,9 @@ fn on_request(r: zap.Request) void {
             // _ = (r.setContentType("application/wasm")) catch |err| std.debug.print("{any}", .{err});
             _ = (r.sendFile("zig-out/bin/checkerboard.wasm")) catch |err| std.debug.print("{any}", .{err});
             return;
+        } else if (std.mem.eql(u8, the_path, "/root.wasm")) {
+            _ = (r.sendFile("zig-out/bin/root.wasm")) catch |err| std.debug.print("{any}", .{err});
+            return;
         } else if (std.mem.eql(u8, the_path, "/favicon.ico")) {
             _ = (r.sendFile("web/favicon.ico")) catch |err| std.debug.print("{any}", .{err});
             return;

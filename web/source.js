@@ -14,7 +14,7 @@ var importObject = {
 WebAssembly.instantiateStreaming(fetch("/root.wasm"), importObject).then((result) => {
   const wasmMemoryArray = new Uint8Array(memory.buffer);
   result.instance.exports.checkCall();
-}
+});
 
 WebAssembly.instantiateStreaming(fetch("/checkerboard.wasm"), importObject).then((result) => {
     const wasmMemoryArray = new Uint8Array(memory.buffer);

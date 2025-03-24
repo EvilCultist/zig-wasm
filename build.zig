@@ -79,7 +79,7 @@ pub fn build(b: *std.Build) void {
     root.initial_memory = std.wasm.page_size * 2;
     root.max_memory = std.wasm.page_size * 2;
 
-    // b.installArtifact(root);
+    b.installArtifact(root);
 
     const server = b.addExecutable(.{
         .name = "server",
