@@ -64,7 +64,7 @@ pub fn build(b: *std.Build) void {
     checks.stack_size = std.wasm.page_size;
 
     checks.initial_memory = std.wasm.page_size * 2;
-    checks.max_memory = std.wasm.page_size * 2;
+    checks.max_memory = std.wasm.page_size * 300;
 
     b.installArtifact(checks);
 
@@ -80,7 +80,7 @@ pub fn build(b: *std.Build) void {
     root.stack_size = std.wasm.page_size;
 
     root.initial_memory = std.wasm.page_size * 2;
-    root.max_memory = std.wasm.page_size * 2;
+    root.max_memory = std.wasm.page_size * 300;
 
     b.installArtifact(root);
 
