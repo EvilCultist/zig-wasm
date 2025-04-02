@@ -16,6 +16,10 @@ pub fn build(b: *std.Build) void {
         .cpu_arch = .wasm32, //std.Target.Cpu.Arch
         .os_tag = .freestanding,
     });
+    const target_wgl = b.resolveTargetQuery(.{
+        .cpu_arch = .wasm32,
+        .os_tag = .opengl,
+    });
 
     const optimize = b.standardOptimizeOption(.{});
     const optimize_wasm = std.builtin.OptimizeMode.ReleaseSmall;
@@ -48,7 +52,7 @@ pub fn build(b: *std.Build) void {
 
     const root_mod = b.createModule(.{
         .root_source_file = b.path("src/root.zig"),
-        .target = target_wasm,
+        .target = target_wgl,
         .optimize = optimize_wasm,
     });
 
